@@ -57,12 +57,14 @@ function createControlPanel() {
             <label class="form-label">Sample Label</label>
             <input type="text" class="form-control" id="sample-label" placeholder="Ex. Lake Eola" />
         </div>
+        <div class="mb-3">
         <button id="start-btn" class="btn btn-primary flex-fill">
             <i class="fas fa-play"></i> Start Sampling
         </button>
         <button id="stop-btn" class="btn btn-danger flex-fill">
             <i class="fas fa-stop"></i> Stop Sampling
         </button>
+        </div>
         <button id="laser-on-btn" class="btn btn-success flex-fill">
             <i class="fas fa-bolt"></i> Laser On
         </button>
@@ -90,9 +92,6 @@ function createDataManagementSection() {
         <button id="export-json" class="btn btn-sm btn-outline-success">
             <i class="fas fa-file-code"></i> Export JSON
         </button>
-    </div>
-    <div class="float-end">
-        <span class="text-muted">Last updated: <span id="${ELEMENTS.lastUpdated}">Never</span></span>
     </div>
     `;
 }
