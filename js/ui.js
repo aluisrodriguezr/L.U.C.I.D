@@ -6,37 +6,36 @@ function initializeUI() {
 }
 
 function createSensorCards() {
-    const container = document.getElementById(ELEMENTS.sensorCards);
-    
-    Object.values(SENSORS).forEach(sensor => {
-        const card = document.createElement("div");
-        card.className = `col-md-${sensor.id === 'alerts' ? 4 : 4}`;
-        
-        let cardContent;
-        if (sensor.id === 'alerts') {
-            cardContent = `
-                <div class="sensor-card ${sensor.bgClass}" style="background-color: #3c3836;">
-                    <h5><i class="fas fa-${sensor.icon}"></i> ${sensor.name}</h5>
-                    <div id="alerts-container">
-                        <p class="mb-1" id="cyanobacteria-alert">No cyanobacteria detected</p>
-                        <p class="mb-0" id="quality-alert">Water quality: Normal</p>
-                    </div>
+    const container = document.getElementById('sensor-cards');
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="col-md-4">
+            <div class="sensor-card bg-primary text-white">
+                <h5><i class="fas fa-lightbulb"></i> Fluorescence Intensity Peak</h5>
+                <h1 id="fluorescence-value">0</h1>
+                <p class="mb-0">Current reading</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="sensor-card bg-success text-white">
+                <h5><i class="fas fa-chart-bar"></i> Cyanobacteria Concentration</h5>
+                <h1 id="concentration-value">0 mg/mL</h1>
+                <p class="mb-0">Estimated</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="sensor-card alert-threshold" style="background-color: #3c3836;">
+                <h5><i class="fas fa-exclamation-triangle"></i> Alerts</h5>
+                <div id="alerts-container">
+                    <p class="mb-1" id="cyanobacteria-alert">No cyanobacteria detected</p>
+                    <p class="mb-0" id="quality-alert">Water quality: Normal</p>
                 </div>
-            `;
-        } else {
-            cardContent = `
-                <div class="sensor-card ${sensor.bgClass} text-white">
-                    <h5><i class="fas fa-${sensor.icon}"></i> ${sensor.name}</h5>
-                    <h1 id="${sensor.id}-value">0${sensor.unit ? ' ' + sensor.unit : ''}</h1>
-                    <p class="mb-0">Current reading</p>
-                </div>
-            `;
-        }
-        
-        card.innerHTML = cardContent;
-        container.appendChild(card);
-    });
+            </div>
+        </div>
+    `;
 }
+
 
 function createControlPanel() {
     const container = document.getElementById(ELEMENTS.controlPanel);
@@ -72,10 +71,6 @@ function createControlPanel() {
             <i class="fas fa-power-off"></i> Laser Off
         </button>
         <hr />
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="cloud-sync" checked />
-            <label class="form-check-label" for="cloud-sync">Enable Cloud Sync</label>
-        </div>
     `;
 }
 
@@ -259,27 +254,49 @@ function downloadFile(content, filename, mimeType) {
 }
 
 function updateUI(data) {
-    if (data.fluorescence !== undefined) {
-        document.getElementById("fluorescence-value").textContent = data.fluorescence;
-    }
-    if (data.concentration !== undefined) {
-        document.getElementById("concentration-value").textContent = `${data.concentration} mg/mL`;
+    if (!data) {
+        console.warn('updateUI called without data');
+        return;
     }
 
-    document.getElementById(ELEMENTS.lastUpdated).textContent = new Date().toLocaleString();
+    // Update fluorescence display
+    const fluorescenceElement = document.getElementById('fluorescence-value');
+    if (fluorescenceElement && data.fluorescence !== undefined) {
+        fluorescenceElement.textContent = 
+            `${data.fluorescence.toFixed(2)} @ ${data.wavelength?.toFixed(0) || '--'}nm`;
+    }
 
+    // Update concentration display
+    const concentrationElement = document.getElementById('concentration-value');
+    if (concentrationElement && data.concentration !== undefined) {
+        concentrationElement.textContent = `${data.concentration.toFixed(3)} mg/mL`;
+    }
+
+    // Update last updated time
+    const lastUpdatedElement = document.getElementById('last-updated');
+    if (lastUpdatedElement) {
+        lastUpdatedElement.textContent = new Date().toLocaleString();
+    }
+
+    // Update charts
     updateCharts(data);
+    
+    // Update alerts
     updateAlerts(data);
 }
 
+// Update alert indicators
 function updateAlerts(data) {
-    const cyanobacteriaAlert = document.getElementById("cyanobacteria-alert");
-    const qualityAlert = document.getElementById("quality-alert");
+    const cyanobacteriaAlert = document.getElementById('cyanobacteria-alert');
+    const qualityAlert = document.getElementById('quality-alert');
+
+    if (!cyanobacteriaAlert || !qualityAlert) return;
 
     const detection = data.detection || "None";
     const fluorescence = data.fluorescence || 0;
     const concentration = data.concentration || 0;
 
+    // Cyanobacteria Alert
     if (detection === "Cyanobacteria") {
         cyanobacteriaAlert.innerHTML = '<i class="fas fa-exclamation-triangle text-danger"></i> Cyanobacteria detected!';
         cyanobacteriaAlert.className = "mb-1 text-danger";
@@ -291,8 +308,12 @@ function updateAlerts(data) {
         cyanobacteriaAlert.className = "mb-1 text-muted";
     }
 
-    if (concentration > 25 || fluorescence > 700) {
-        qualityAlert.innerHTML = '<i class="fas fa-exclamation-triangle text-warning"></i> Water quality: Potentially compromised';
+    // Water Quality Alert (could be deleted in the future idk --is green algae dangerous?)
+    if (concentration > 1.0 || detection === "Cyanobacteria") {
+        qualityAlert.innerHTML = '<i class="fas fa-exclamation-triangle text-danger"></i> Water quality: Dangerous';
+        qualityAlert.className = "mb-0 text-danger";
+    } else if (concentration > 0.5 || detection === "Cyanobacteria") {
+        qualityAlert.innerHTML = '<i class="fas fa-exclamation-triangle text-warning"></i> Water quality: Warning';
         qualityAlert.className = "mb-0 text-warning";
     } else {
         qualityAlert.innerHTML = '<i class="fas fa-check-circle text-success"></i> Water quality: Safe';
@@ -311,3 +332,4 @@ function initializeDemoData() {
     updateUI(demoData);
     updateHistoryChart(CONFIG.DEFAULTS.historyRange);
 }
+

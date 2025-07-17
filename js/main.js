@@ -10,34 +10,82 @@ const firebaseConfig = {
   measurementId: "G-E10PZD63SL"
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-document.addEventListener("DOMContentLoaded", function () {
+// DOM Ready Handler
+document.addEventListener("DOMContentLoaded", function() {
+  // Initialize all components
   initializeUI();
   initializeCharts();
-  initializeWebSocket();
-
+  
   // Set default UI values
-  if (document.getElementById("sampling-rate"))
-    document.getElementById("sampling-rate").value = CONFIG.DEFAULTS.samplingRate;
-  if (document.getElementById("integration-time"))
-    document.getElementById("integration-time").value = CONFIG.DEFAULTS.integrationTime;
-  if (document.getElementById("history-range"))
-    document.getElementById("history-range").value = CONFIG.DEFAULTS.historyRange;
+  document.getElementById("sampling-rate").value = 5;
+  
+  // Setup Firebase listeners
+  setupFirebaseListeners();
 });
 
-// 🔁 Listen for live_data updates from Firebase
-firebase.database().ref("live_data").on("value", (snapshot) => {
-  const data = snapshot.val();
-  console.log("✅ Received live_data from Firebase:", data);
+// Firebase Listeners
+function setupFirebaseListeners() {
+  // Main data listener
+  firebase.database().ref("live_data").on("value", (snapshot) => {
+    const data = snapshot.val();
+    console.log("Live Data Update:", data);
+    
+    // Process intensity_values if needed
+    if (data?.intensity_values && typeof data.intensity_values === 'object') {
+      data.intensity_values = Object.values(data.intensity_values);
+    }
+    
+    updateUI(data);
+  });
+  
+  // Photodiode listener
+  firebase.database().ref("photodiode").on("value", (snapshot) => {
+    const photodiodeValue = parseFloat(snapshot.val());
+    if (!isNaN(photodiodeValue)) {
+      console.log("Photodiode Update:", photodiodeValue);
+      updateCharts({ photodiode: photodiodeValue });
+    }
+  });
+  
+  // Connection status listener
+  const connectedRef = firebase.database().ref(".info/connected");
+  connectedRef.on("value", (snap) => {
+    const statusElement = document.getElementById("connection-status");
+    if (snap.val() === true) {
+      statusElement.className = "badge bg-success";
+      statusElement.innerHTML = '<i class="fas fa-circle"></i> Connected to LUCID';
+    } else {
+      statusElement.className = "badge bg-danger";
+      statusElement.innerHTML = '<i class="fas fa-circle"></i> Disconnected';
+    }
+  });
+}
 
-  // Convert object to array if needed
-  if (data?.intensity_values && !Array.isArray(data.intensity_values)) {
-    const values = data.intensity_values;
-    data.intensity_values = Object.keys(values)
-      .sort((a, b) => parseInt(a) - parseInt(b))
-      .map(key => values[key]);
-  }
+// sample data
+function testWithSampleData() {
+  console.log("Testing with sample data...");
+  const testData = {
+    intensity_values: Array.from({length: 830}, (_, i) => 
+      Math.round(100 + 100 * Math.sin(i/50))),
+    fluorescence: 150,
+    wavelength: 665.5,
+    photodiode: 0.6,
+    concentration: 1.25,
+    detection: "Cyanobacteria"
+  };
+  updateUI(testData);
+}
 
-  updateUI(data); // call your existing function
-});
+// Debug utilities
+window.debug = {
+  testData: testWithSampleData,
+  charts: () => ({
+    spectrum: spectrumChart,
+    photodiode: photodiodeChart,
+    history: historyChart
+  })
+};
+
