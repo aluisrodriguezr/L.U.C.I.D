@@ -1,5 +1,7 @@
 # LUCID
 
+
+Website Hosted on Firebase + Realtime Database connection to UI for dynamic testing
 url: https://lucid-d30e0.web.app/
 
 PC Dimensions:
