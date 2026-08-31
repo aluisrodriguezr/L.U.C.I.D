@@ -68,10 +68,6 @@ The Raspberry Pi 5 serves as the system's high-level compute unit: it acquires i
 
 The system successfully detected cyanobacteria at concentrations as low as 0.25 mg/mL, resolving the ~30 nm spectral separation between cyanobacteria (peak ~620–650 nm) and green algae (peak ~665–690 nm) needed to tell them apart.
 
-## Team
-
-Built as a senior design project (College of Optics and Photonics / Dept. of Electrical and Computer Engineering, Group 5, Spring/Summer 2025) by Max Baryshnikov (Photonics), Nicholas Drennen (Photonics), Luis Rodriguez-Rivera (Computer Engineering), and Sean Waddell (Electrical Engineering), advised by Dr. Aravinda Kar and Dr. Lei Wei.
-
 ## Live Demo
  
 The web app is hosted on Firebase and connects to the Firebase Realtime Database for dynamic, live-updating test results:
