@@ -34,6 +34,36 @@ The Raspberry Pi 5 serves as the system's high-level compute unit: it acquires i
 | Firebase Realtime Database | Live, event-driven sync between device and web app |
 | Python (Picamera2, OpenCV, NumPy, Matplotlib) | Camera control, image processing, wavelength mapping, calibration |
 
+
+<img width="1011" height="618" alt="image" src="https://github.com/user-attachments/assets/3830ddf7-3225-44b7-a7c3-46bb6ca9ad9d" />
+
+
+## Housing:
+
+<img width="1009" height="707" alt="image" src="https://github.com/user-attachments/assets/8f5154ad-dc87-43b2-8265-14d489f1ea35" />
+
+## ESP32-S3 PCB
+
+<img width="738" height="763" alt="image" src="https://github.com/user-attachments/assets/bbac97f4-7bf2-42bb-8515-1f9f9022b75a" />
+
+## FDS 100
+
+<img width="409" height="353" alt="image" src="https://github.com/user-attachments/assets/8e1bc1d4-835b-49da-8aad-b43b0143652e" />
+
+## LED Indicator
+
+<img width="482" height="359" alt="image" src="https://github.com/user-attachments/assets/a24c8af8-9fd8-4956-9da8-ef004f32957a" />
+
+
+## Laser Controller
+
+<img width="493" height="402" alt="image" src="https://github.com/user-attachments/assets/e4d6186d-722e-461b-8c08-ec4ffae38b02" />
+
+## Power Distribution PCB:
+
+<img width="493" height="439" alt="image" src="https://github.com/user-attachments/assets/fb858bcb-bef4-428e-8c47-016062d6047f" />
+
+
 ## Results
 
 The system successfully detected cyanobacteria at concentrations as low as 0.25 mg/mL, resolving the ~30 nm spectral separation between cyanobacteria (peak ~620–650 nm) and green algae (peak ~665–690 nm) needed to tell them apart.
