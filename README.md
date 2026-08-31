@@ -42,24 +42,33 @@ The system successfully detected cyanobacteria at concentrations as low as 0.25 
 
 Built as a senior design project (College of Optics and Photonics / Dept. of Electrical and Computer Engineering, Group 5, Spring/Summer 2025) by Max Baryshnikov (Photonics), Nicholas Drennen (Photonics), Luis Rodriguez-Rivera (Computer Engineering), and Sean Waddell (Electrical Engineering), advised by Dr. Aravinda Kar and Dr. Lei Wei.
 
-Website Hosted on Firebase + Realtime Database connection to UI for dynamic testing
-url: https://lucid-d30e0.web.app/
-
-PC Dimensions:
-<img width="1794" height="1257" alt="image" src="https://github.com/user-attachments/assets/9a2ce8c7-40b2-4d6b-a9dd-f54d630cf4a9" />
-
-Phone Dimensions:
-<img width="331" height="721" alt="image" src="https://github.com/user-attachments/assets/e8c75679-d725-4ea4-952c-960deca7486f" />
-
-Spirulina Powder Sample Fluorescence 
-1mg sample:
-<img width="770" height="400" alt="image" src="https://github.com/user-attachments/assets/eefa6f54-f729-4400-8a1c-af9d078840df" />
-
-0.5mg 
-<img width="767" height="397" alt="image" src="https://github.com/user-attachments/assets/93bb1f6e-f88f-4d7b-8d5d-1115191c25b8" />
-
-0.25mg
-<img width="769" height="402" alt="image" src="https://github.com/user-attachments/assets/48556809-2f31-449a-a564-6091ed7065cf" />
-
-0.125mg
-<img width="763" height="398" alt="image" src="https://github.com/user-attachments/assets/5f991acd-4c08-4c29-83b1-57595db3fd43" />
+## Live Demo
+ 
+The web app is hosted on Firebase and connects to the Firebase Realtime Database for dynamic, live-updating test results:
+ 
+**[lucid-d30e0.web.app](https://lucid-d30e0.web.app/)**
+ 
+The UI is responsive across desktop and mobile:
+ 
+**PC:**
+<img width="1794" height="1257" alt="LUCID web dashboard on desktop" src="https://github.com/user-attachments/assets/9a2ce8c7-40b2-4d6b-a9dd-f54d630cf4a9" />
+ 
+**Phone:**
+<img width="331" height="721" alt="LUCID web dashboard on mobile" src="https://github.com/user-attachments/assets/e8c75679-d725-4ea4-952c-960deca7486f" />
+ 
+## Sample Readings — Spirulina Powder Fluorescence
+ 
+Live spectral readings captured across a dilution series, showing how fluorescence intensity scales with sample concentration:
+ 
+**1 mg:**
+<img width="770" height="400" alt="Spirulina 1mg fluorescence spectrum" src="https://github.com/user-attachments/assets/eefa6f54-f729-4400-8a1c-af9d078840df" />
+ 
+**0.5 mg:**
+<img width="767" height="397" alt="Spirulina 0.5mg fluorescence spectrum" src="https://github.com/user-attachments/assets/93bb1f6e-f88f-4d7b-8d5d-1115191c25b8" />
+ 
+**0.25 mg:**
+<img width="769" height="402" alt="Spirulina 0.25mg fluorescence spectrum" src="https://github.com/user-attachments/assets/48556809-2f31-449a-a564-6091ed7065cf" />
+ 
+**0.125 mg:**
+<img width="763" height="398" alt="Spirulina 0.125mg fluorescence spectrum" src="https://github.com/user-attachments/assets/5f991acd-4c08-4c29-83b1-57595db3fd43" />
+ 
