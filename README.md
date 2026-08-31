@@ -38,28 +38,28 @@ The Raspberry Pi 5 serves as the system's high-level compute unit: it acquires i
 <img width="1011" height="618" alt="image" src="https://github.com/user-attachments/assets/3830ddf7-3225-44b7-a7c3-46bb6ca9ad9d" />
 
 
-## Housing:
+### Housing:
 
 <img width="1009" height="707" alt="image" src="https://github.com/user-attachments/assets/8f5154ad-dc87-43b2-8265-14d489f1ea35" />
 
-## ESP32-S3 PCB
+### ESP32-S3 PCB
 
 <img width="738" height="763" alt="image" src="https://github.com/user-attachments/assets/bbac97f4-7bf2-42bb-8515-1f9f9022b75a" />
 
-## FDS 100
+### FDS 100
 
 <img width="409" height="353" alt="image" src="https://github.com/user-attachments/assets/8e1bc1d4-835b-49da-8aad-b43b0143652e" />
 
-## LED Indicator
+### LED Indicator
 
 <img width="482" height="359" alt="image" src="https://github.com/user-attachments/assets/a24c8af8-9fd8-4956-9da8-ef004f32957a" />
 
 
-## Laser Controller
+### Laser Controller
 
 <img width="493" height="402" alt="image" src="https://github.com/user-attachments/assets/e4d6186d-722e-461b-8c08-ec4ffae38b02" />
 
-## Power Distribution PCB:
+### Power Distribution PCB:
 
 <img width="493" height="439" alt="image" src="https://github.com/user-attachments/assets/fb858bcb-bef4-428e-8c47-016062d6047f" />
 
