@@ -1,4 +1,4 @@
-# LUCID
+# LUCID: Laser‑Ultraviolet Cyanobacteria Identification and Detection System
 
 
 Website Hosted on Firebase + Realtime Database connection to UI for dynamic testing
