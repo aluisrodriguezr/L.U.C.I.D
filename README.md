@@ -10,9 +10,9 @@ PC Dimensions:
 Phone Dimensions:
 <img width="331" height="721" alt="image" src="https://github.com/user-attachments/assets/e8c75679-d725-4ea4-952c-960deca7486f" />
 
-
+Spirulina Powder Sample Fluorescence 
 1mg sample:
-<img width="755" height="384" alt="image" src="https://github.com/user-attachments/assets/e14d6b33-85fb-40b7-85cb-0f267ac96fb7" />
+<img width="770" height="400" alt="image" src="https://github.com/user-attachments/assets/eefa6f54-f729-4400-8a1c-af9d078840df" />
 
 0.5mg 
 <img width="767" height="397" alt="image" src="https://github.com/user-attachments/assets/93bb1f6e-f88f-4d7b-8d5d-1115191c25b8" />
